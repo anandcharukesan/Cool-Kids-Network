@@ -25,10 +25,8 @@ const Navbar = () => {
           Cool Kids Network
         </Link>
         <div className="space-x-4">
-          <Link to="/" className="hover:text-gray-300">
-            Home
-          </Link>
-          {!isLoggedIn && (
+          {/* Show "Sign In" and "Sign Up" if the user is not logged in */}
+          {!isLoggedIn ? (
             <>
               <Link to="/signup" className="hover:text-gray-300">
                 Sign Up
@@ -37,12 +35,8 @@ const Navbar = () => {
                 Sign In
               </Link>
             </>
-          )}
-          {isLoggedIn && (
+          ) : (
             <>
-              <Link to="/dashboard" className="hover:text-gray-300">
-                Dashboard
-              </Link>
               <button
                 onClick={handleLogout}
                 className="bg-red-500 px-4 py-2 rounded hover:bg-red-600"
