@@ -1,4 +1,4 @@
-import { findUserByEmail, getAllUsers } from "../models/userModel.js";
+import { findUserByEmail, getAllUsers, getAllUsersForCooler } from "../models/userModel.js";
 
 export const getUser = async (req, res) => {
     const email = req.params.email;
@@ -9,12 +9,28 @@ export const getUser = async (req, res) => {
     res.send({ user });
 };
 
-export const getAllUserNamesAndCountries = async (req, res) => {
-    const { role } = req.body; // Assuming role is passed in the body for simplicity
-    if (role !== "Cooler Kid" && role !== "Coolest Kid") {
+export const getAllUsersDetails = async (req, res) => {
+    let { role } = req.body;
+    if (!role) {
+        role = req.user.role;
+    }
+    
+    if (role !== "Coolest Kid" && role !== "Admin") {
         return res.status(403).send({ message: "Access denied" });
     }
 
     const users = await getAllUsers();
+    res.send({ users });
+};
+
+export const getAllUserNamesAndCountries = async (req, res) => {
+    const { role } = req.body;
+    console.log(role);
+    
+    if (role !== "Cooler Kid") {
+        return res.status(403).send({ message: "Access denied" });
+    }
+
+    const users = await getAllUsersForCooler();
     res.send({ users });
 };
