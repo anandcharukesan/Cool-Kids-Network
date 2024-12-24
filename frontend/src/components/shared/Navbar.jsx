@@ -4,12 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
   const navigate = useNavigate();
+  const userToken = localStorage.getItem("userToken");
 
-  useEffect(() => {
-    // Check if the user is logged in (e.g., by checking token in localStorage)
-    const userToken = localStorage.getItem("userToken");
-    setIsLoggedIn(!!userToken); // Update state based on token presence
-  }, []);
+  // useEffect(() => {
+  //   // Check if the user is logged in (e.g., by checking token in localStorage)
+  //   const userToken = localStorage.getItem("userToken");
+  //   console.log(userToken);
+
+  //   setIsLoggedIn(!!userToken); // Update state based on token presence
+  // }, []);
 
   const handleLogout = () => {
     // Clear user session
@@ -26,7 +29,7 @@ const Navbar = () => {
         </Link>
         <div className="space-x-4">
           {/* Show "Sign In" and "Sign Up" if the user is not logged in */}
-          {!isLoggedIn ? (
+          {!userToken ? (
             <>
               <Link to="/signup" className="hover:text-gray-300">
                 Sign Up
