@@ -1,11 +1,17 @@
 import { useAuth } from "../context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
-    <nav className="bg-blue-500 p-4">
+    <nav className="bg-slate-800 p-4 shadow-md">
       <div className="flex justify-between items-center">
         <Link to="/" className="text-white font-bold text-xl">
           Cool Kids App
@@ -13,10 +19,10 @@ const Navbar = () => {
         <div>
           {user ? (
             <div className="flex items-center">
-              <span className="text-white mr-4">Hello, {user.firstName}</span>
+              <span className="text-white mr-4">{user.role}</span>
               <button
-                onClick={logout}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                onClick={handleLogout}
+                className="min-w-5 rounded-md bg-slate-800 py-2 px-4 border border-white text-white transition-all shadow-md hover:shadow-lg hover:bg-white hover:text-slate-800 focus:shadow-none active:bg-white active:text-slate-800"
               >
                 Logout
               </button>
@@ -25,13 +31,13 @@ const Navbar = () => {
             <div className="flex items-center">
               <Link
                 to="/login"
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-4"
+                className="min-w-5 rounded-md bg-slate-800 py-2 px-4 border border-white text-white transition-all shadow-md hover:shadow-lg hover:bg-white hover:text-slate-800 focus:shadow-none active:bg-white active:text-slate-800 mr-4"
               >
                 Login
               </Link>
               <Link
                 to="/signup"
-                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                className="min-w-5 rounded-md bg-slate-800 py-2 px-4 border border-white text-white transition-all shadow-md hover:shadow-lg hover:bg-white hover:text-slate-800 focus:shadow-none active:bg-white active:text-slate-800"
               >
                 Sign Up
               </Link>
