@@ -4,12 +4,17 @@ import authRoutes from "./app/routes/authRoutes.js";
 import userRoutes from "./app/routes/userRoutes.js";
 import roleRoutes from "./app/routes/roleRoutes.js";
 import meRoutes from "./app/routes/meroutes.js";
-
+import path from 'path';
 import cors from "cors";
+import { fileURLToPath } from 'url';
+
 
 const app = express();
 const PORT = 3000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+app.use(express.static(path.join(__dirname, 'dist')));
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
@@ -29,6 +34,11 @@ app.use(
       allowedHeaders: ["Content-Type"],
     })
 );
+app.get('*', (req, res) => {
+
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
 
 // Start server
 app.listen(PORT, () => {
