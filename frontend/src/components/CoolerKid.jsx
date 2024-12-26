@@ -52,11 +52,11 @@ const CoolerKid = () => {
               className="p-4 bg-white border border-slate-200 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition duration-200 ease-in-out"
             >
               <p className="flex items-center mb-2 text-lg font-bold text-slate-800">
-                <FaUser className="mr-2 text-purple-400" />
+                <FaUser className="mr-2 text-slate-800" />
                 Name: {userData.first_name} {userData.last_name}
               </p>
               <p className="flex items-center mb-2 text-slate-600">
-                <FaMapMarkerAlt className="mr-2 text-purple-400" />
+                <FaMapMarkerAlt className="mr-2 text-slate-800" />
                 Country: {userData.country}
               </p>
             </div>
