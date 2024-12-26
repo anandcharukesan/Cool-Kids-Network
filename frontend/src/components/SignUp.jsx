@@ -21,7 +21,7 @@ const SignUp = () => {
       if (data.userId) {
         navigate("/login");
       } else {
-        alert("Error signing up");
+        alert("Email may already exist try another email address");
       }
     } catch (err) {
       alert("Error: " + err.message);
