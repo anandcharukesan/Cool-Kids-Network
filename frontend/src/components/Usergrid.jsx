@@ -17,7 +17,7 @@ const UserGrid = () => {
 
       try {
         const response = await axios.get(
-          "http://localhost:3000/users/all/maintainer",
+          "https://coolkidsnetwork.vercel.app/users/all/maintainer",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -44,7 +44,7 @@ const UserGrid = () => {
     try {
       // Send request to change user role
       await axios.put(
-        `http://localhost:3000/roles/assign`,
+        `https://coolkidsnetwork.vercel.app/roles/assign`,
         { role: newRole, email: email },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -13,7 +13,7 @@ const CoolestKid = () => {
     const fetchAllUsers = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:3000/users/all/coolest",
+          "https://coolkidsnetwork.vercel.app/users/all/coolest",
           {
             role: user.role,
           }
